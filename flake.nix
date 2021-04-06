@@ -19,6 +19,13 @@
           executable = true;
         };
 
+        helmfile_ver = "0.138.7";
+        helmfile_bin = fetchurl {
+          url = "https://github.com/roboll/helmfile/releases/download/v${helmfile_ver}/helmfile_linux_amd64";
+          sha256 = "sha256-KuReKArsIK9CGfNeD4sHRLzt1lGmR8tq8fSlCmFoG7M=";
+          executable = true;
+        };
+
         kops_ver = "1.18.1";
         kops_bin = fetchurl {
           url = "https://github.com/kubernetes/kops/releases/download/v${kops_ver}/kops-linux-amd64";
@@ -106,6 +113,8 @@
           install -d $out/
 
           tar xf $helm_bin --strip-components=1 -C $out/ linux-amd64/helm && chmod +x $out/helm
+
+          install -m+x $helmfile_bin $out/helmfile
 
           install -m+x $kops_bin $out/kops
 
