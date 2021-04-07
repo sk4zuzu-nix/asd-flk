@@ -96,10 +96,10 @@
           executable = true;
         };
 
-        velero_ver = "1.5.4";
+        velero_ver = "1.5.3";
         velero_bin = fetchurl {
           url = "https://github.com/vmware-tanzu/velero/releases/download/v${velero_ver}/velero-v${velero_ver}-linux-amd64.tar.gz";
-          sha256 = "sha256-apdEgFP8zfbHYUe+kGeaTN6cmi2qDw6HxKHP46METbc=";
+          sha256 = "sha256-scpvRlWtRP6HwqOEQhs1IlvYqzlkyQJ0152HqZ17cZs=";
           executable = true;
         };
 
