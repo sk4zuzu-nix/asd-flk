@@ -33,6 +33,13 @@
           executable = true;
         };
 
+        kubecom_ver = "0.7.6";
+        kubecom_bin = fetchurl {
+          url = "https://github.com/AnatolyRugalev/kube-commander/releases/download/${kubecom_ver}/kubecom_${kubecom_ver}_linux_amd64";
+          sha256 = "sha256-JDBmYhlfNPPsPD5txV57hAX+xK5av7MjhRJgOtM7ud0=";
+          executable = true;
+        };
+
         kubectl_ver = "1.18.9";
         kubectl_bin = fetchurl {
           url = "https://storage.googleapis.com/kubernetes-release/release/v${kubectl_ver}/bin/linux/amd64/kubectl";
@@ -117,6 +124,8 @@
           install -m+x $helmfile_bin $out/helmfile
 
           install -m+x $kops_bin $out/kops
+
+          install -m+x $kubecom_bin $out/kubecom
 
           install -m+x $kubectl_bin $out/kubectl
 
