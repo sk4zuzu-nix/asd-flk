@@ -68,10 +68,10 @@
           executable = true;
         };
 
-        packer_ver = "1.7.1";
+        packer_ver = "1.7.2";
         packer_bin = fetchurl {
           url = "https://releases.hashicorp.com/packer/${packer_ver}/packer_${packer_ver}_linux_amd64.zip";
-          sha256 = "sha256-gx6Jw/UMqT/HDgfP0uOXT+9HHTOFui03vOQhOLUvCjg=";
+          sha256 = "sha256-0f+tue6zWt7JVHgE5Ide4rRjp33Nrwv2xkFx41L5L+M=";
           executable = true;
         };
 
@@ -89,10 +89,10 @@
           executable = true;
         };
 
-        terraform_ver = "0.13.6";
+        terraform_ver = "0.14.9";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-XuY89R2hdJ8nKIOx68sPzs4Od2kzjUcI0cHGYnjvgU4=";
+          sha256 = "sha256-49o15KyW0rk7rYaGz79VW3yb+rHHEXuC3hv26wpFhBU=";
           executable = true;
         };
 
