@@ -1,7 +1,7 @@
 {
   description = "The 'asd' flake";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-20.09;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-21.05;
 
   outputs = { self, nixpkgs }: {
     defaultPackage.x86_64-linux =
@@ -11,6 +11,13 @@
         name = "asd_sk4zuzu";
 
         dontUnpack = true;
+
+        cilium_ver = "0.7";
+        cilium_bin = fetchurl {
+          url = "https://github.com/cilium/cilium-cli/releases/download/v${cilium_ver}/cilium-linux-amd64.tar.gz";
+          sha256 = "sha256-A5GHhRvF/BPcjMfqCQ5j7s5S6mTo4WSXxJ29VX9v5Ks=";
+          executable = true;
+        };
 
         helm_ver = "3.5.3";
         helm_bin = fetchurl {
@@ -23,6 +30,13 @@
         helmfile_bin = fetchurl {
           url = "https://github.com/roboll/helmfile/releases/download/v${helmfile_ver}/helmfile_linux_amd64";
           sha256 = "sha256-KuReKArsIK9CGfNeD4sHRLzt1lGmR8tq8fSlCmFoG7M=";
+          executable = true;
+        };
+
+        hubble_ver = "0.8.0";
+        hubble_bin = fetchurl {
+          url = "https://github.com/cilium/hubble/releases/download/v${hubble_ver}/hubble-linux-amd64.tar.gz";
+          sha256 = "sha256-URe/wK/I8sI5IOy/9oCi+DeFhQ4DXI0OQZWNUGVwewc=";
           executable = true;
         };
 
@@ -96,10 +110,24 @@
           executable = true;
         };
 
+        terraform_docs_ver = "0.14.1";
+        terraform_docs_bin = fetchurl {
+          url = "https://github.com/terraform-docs/terraform-docs/releases/download/v${terraform_docs_ver}/terraform-docs-v${terraform_docs_ver}-linux-amd64.tar.gz";
+          sha256 = "sha256-xdwCH6CaH/m5ezG1C49e9jJoOEzkKahwVh60dfmJSbs=";
+          executable = true;
+        };
+
         terragrunt_ver = "0.28.15";
         terragrunt_bin = fetchurl {
           url = "https://github.com/gruntwork-io/terragrunt/releases/download/v${terragrunt_ver}/terragrunt_linux_amd64";
           sha256 = "sha256-tjXidqsThYgQ87NaF5ZM1SFesRGKsxDcXD4oM1m6DfQ=";
+          executable = true;
+        };
+
+        vault_ver = "1.6.2";
+        vault_bin = fetchurl {
+          url = "https://releases.hashicorp.com/vault/${vault_ver}/vault_${vault_ver}_linux_amd64.zip";
+          sha256 = "sha256-pH0gI0rFSV5oYurM12mxnbQokfqCqzg3LT4EWZdHUeU=";
           executable = true;
         };
 
@@ -119,9 +147,13 @@
         installPhase = ''
           install -d $out/
 
+          tar xf $cilium_bin -C $out/ cilium && chmod +x $out/cilium
+
           tar xf $helm_bin --strip-components=1 -C $out/ linux-amd64/helm && chmod +x $out/helm
 
           install -m+x $helmfile_bin $out/helmfile
+
+          tar xf $hubble_bin -C $out/ hubble && chmod +x $out/hubble
 
           install -m+x $kops_bin $out/kops
 
@@ -143,7 +175,11 @@
 
           unzip -p $terraform_bin terraform > $out/terraform && chmod +x $out/terraform
 
+          tar xf $terraform_docs_bin -C $out/ terraform-docs && chmod +x $out/terraform-docs
+
           install -m+x $terragrunt_bin $out/terragrunt
+
+          unzip -p $vault_bin vault > $out/vault && chmod +x $out/vault
 
           tar xf $velero_bin --strip-components=1 -C $out/ velero-v${velero_ver}-linux-amd64/velero && chmod +x $out/velero
         '';
