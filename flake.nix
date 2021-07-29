@@ -40,6 +40,13 @@
           executable = true;
         };
 
+        k9s_ver = "0.24.14";
+        k9s_bin = fetchurl {
+          url = "https://github.com/derailed/k9s/releases/download/v${k9s_ver}/k9s_Linux_x86_64.tar.gz";
+          sha256 = "sha256-PW17t03W5axh6Eatfq8aTQTE5Z8bGHamnVbIQVlF8vs=";
+          executable = true;
+        };
+
         kops_ver = "1.18.1";
         kops_bin = fetchurl {
           url = "https://github.com/kubernetes/kops/releases/download/v${kops_ver}/kops-linux-amd64";
@@ -103,10 +110,10 @@
           executable = true;
         };
 
-        terraform_ver = "0.14.9";
+        terraform_ver = "0.14.11";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-49o15KyW0rk7rYaGz79VW3yb+rHHEXuC3hv26wpFhBU=";
+          sha256 = "sha256-PeewHA9zgY2Si9VsoQn9qSwwnZi2ttQVWLGNZOIuGrU=";
           executable = true;
         };
 
@@ -138,6 +145,13 @@
           executable = true;
         };
 
+        virtctl_ver = "0.43.0";
+        virtctl_bin = fetchurl {
+          url = "https://github.com/kubevirt/kubevirt/releases/download/v${virtctl_ver}/virtctl-v${virtctl_ver}-linux-amd64";
+          sha256 = "sha256-+aNepgkJQ8A8+7oBtAetkWSQjsyZfj2UQXH/lwGYm/U=";
+          executable = true;
+        };
+
         nativeBuildInputs = [ installShellFiles unzip ];
 
         dontPatch     = true;
@@ -154,6 +168,8 @@
           install -m+x $helmfile_bin $out/helmfile
 
           tar xf $hubble_bin -C $out/ hubble && chmod +x $out/hubble
+
+          tar xf $k9s_bin -C $out/ k9s && chmod +x $out/k9s
 
           install -m+x $kops_bin $out/kops
 
@@ -182,6 +198,8 @@
           unzip -p $vault_bin vault > $out/vault && chmod +x $out/vault
 
           tar xf $velero_bin --strip-components=1 -C $out/ velero-v${velero_ver}-linux-amd64/velero && chmod +x $out/velero
+
+          install -m+x $virtctl_bin $out/virtctl
         '';
 
         dontFixup = true;
