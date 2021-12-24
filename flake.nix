@@ -1,7 +1,7 @@
 {
   description = "The 'asd' flake";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-21.05;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/b67e752c29f18a0ca5534a07661366d6a2c2e649;
 
   outputs = { self, nixpkgs }: {
     defaultPackage.x86_64-linux =
@@ -110,24 +110,31 @@
           executable = true;
         };
 
-        terraform_ver = "0.14.11";
+        teectl_ver = "2.4.13";
+        teectl_bin = fetchurl {
+          url = "https://s3.amazonaws.com/traefikee/binaries/v${teectl_ver}/teectl_v${teectl_ver}_linux_amd64.tar.gz";
+          sha256 = "sha256-l6YcoH3aXdJw97Jb84KZJsOPbkgIiPVl+1QZHsMWBG0=";
+          executable = true;
+        };
+
+        terraform_ver = "1.1.2";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-PeewHA9zgY2Si9VsoQn9qSwwnZi2ttQVWLGNZOIuGrU=";
+          sha256 = "sha256-+jsqIqEUOftcHKRYHPXgaa7vXMv8uvQako+SXdRmWcM=";
           executable = true;
         };
 
-        terraform_docs_ver = "0.14.1";
+        terraform_docs_ver = "0.16.0";
         terraform_docs_bin = fetchurl {
           url = "https://github.com/terraform-docs/terraform-docs/releases/download/v${terraform_docs_ver}/terraform-docs-v${terraform_docs_ver}-linux-amd64.tar.gz";
-          sha256 = "sha256-xdwCH6CaH/m5ezG1C49e9jJoOEzkKahwVh60dfmJSbs=";
+          sha256 = "sha256-5cjFlo1DH+rB/tJ9vUbvHyQsL1fV4Chk6X/n6PvU9tw=";
           executable = true;
         };
 
-        terragrunt_ver = "0.28.15";
+        terragrunt_ver = "0.35.16";
         terragrunt_bin = fetchurl {
           url = "https://github.com/gruntwork-io/terragrunt/releases/download/v${terragrunt_ver}/terragrunt_linux_amd64";
-          sha256 = "sha256-tjXidqsThYgQ87NaF5ZM1SFesRGKsxDcXD4oM1m6DfQ=";
+          sha256 = "sha256-SoKx9JP0SA75Prj4Hv6o/a1wIAl3oJkIUCcVQ8abcU8=";
           executable = true;
         };
 
@@ -189,7 +196,10 @@
 
           bzcat $restic_bin > $out/restic && chmod +x $out/restic
 
-          unzip -p $terraform_bin terraform > $out/terraform && chmod +x $out/terraform
+          tar xf $teectl_bin -C $out/ teectl && chmod +x $out/teectl
+
+          unzip -p $terraform_bin terraform > $out/terraform-bin && chmod +x $out/terraform-bin
+          ln -s $out/terraform-bin $out/terraform
 
           tar xf $terraform_docs_bin -C $out/ terraform-docs && chmod +x $out/terraform-docs
 
