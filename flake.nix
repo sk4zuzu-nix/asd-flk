@@ -12,17 +12,17 @@
 
         dontUnpack = true;
 
-        helm_ver = "3.8.0";
+        helm_ver = "3.9.0";
         helm_bin = fetchurl {
           url = "https://get.helm.sh/helm-v${helm_ver}-linux-amd64.tar.gz";
-          sha256 = "sha256-qYsWbzfutbT/O8/DJ+Lfd+NBe7BvQnOlWIdPy9jrsL4=";
+          sha256 = "sha256-S0FkpPc0W2A2QQY5KsafS49XCM3yBRhbp2y4IN/Ufm0=";
           executable = true;
         };
 
-        kubectl_ver = "1.23.3";
+        kubectl_ver = "1.24.1";
         kubectl_bin = fetchurl {
           url = "https://storage.googleapis.com/kubernetes-release/release/v${kubectl_ver}/bin/linux/amd64/kubectl";
-          sha256 = "sha256-cOXyBQsgJimUIeIPKF2SC7wBG4XrsV2vXhds2gkGvJo=";
+          sha256 = "sha256-fR11gylsDF+OOvXQkoXS+12aRknphiG+fKubgT454iw=";
           executable = true;
         };
 
@@ -47,24 +47,24 @@
           executable = true;
         };
 
-        packer_ver = "1.7.10";
+        packer_ver = "1.8.1";
         packer_bin = fetchurl {
           url = "https://releases.hashicorp.com/packer/${packer_ver}/packer_${packer_ver}_linux_amd64.zip";
-          sha256 = "sha256-8+UrFQAAVELNVBSehQwbfifvk9uEkR9lnjQkTuUf/cI=";
+          sha256 = "sha256-BXSykaSQlvN1vUnYVmO6wpvDl1otBZyZq10F+GXfdh4=";
           executable = true;
         };
 
-        terraform_ver = "1.1.5";
+        terraform_ver = "1.2.1";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-irvwX01d0cynBP1A8jRYZQpCERUkXbOGlH+gz2yP6pk=";
+          sha256 = "sha256-GAQw7cj84rq4FymMDB3GyKkOAH6ZspiAhEtczSY5vOc=";
           executable = true;
         };
 
-        terragrunt_ver = "0.36.1";
+        terragrunt_ver = "0.37.1";
         terragrunt_bin = fetchurl {
           url = "https://github.com/gruntwork-io/terragrunt/releases/download/v${terragrunt_ver}/terragrunt_linux_amd64";
-          sha256 = "sha256-GPpK8kYayzVi96WLrnOy/i+dvEXX6vNR1uEigNay6cY=";
+          sha256 = "sha256-7+FQ1gkYDJHmuITXwqBzXPHuT4b/leuAYhRjQuUprPI=";
           executable = true;
         };
 
