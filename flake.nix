@@ -47,6 +47,13 @@
           executable = true;
         };
 
+        kustomize_ver = "4.5.5";
+        kustomize_bin = fetchurl {
+          url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${kustomize_ver}/kustomize_v${kustomize_ver}_linux_amd64.tar.gz";
+          sha256 = "sha256-Rp+vQ995hIFU6iAMz3URvoc1VOVjdNnWg0abF0Ha7uU=";
+          executable = true;
+        };
+
         packer_ver = "1.8.1";
         packer_bin = fetchurl {
           url = "https://releases.hashicorp.com/packer/${packer_ver}/packer_${packer_ver}_linux_amd64.zip";
@@ -86,6 +93,8 @@
           install -m+x $kubens_bin $out/kubens
 
           install -m+x $kubeps1_bin $out/kube-ps1.sh
+
+          tar xf $kustomize_bin -C $out/ kustomize && chmod +x $out/kustomize
 
           unzip -p $packer_bin packer > $out/packer && chmod +x $out/packer
 
