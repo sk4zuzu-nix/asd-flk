@@ -1,7 +1,7 @@
 {
   description = "The 'asd' flake";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-21.11;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
 
   outputs = { self, nixpkgs }: {
     defaultPackage.x86_64-linux =
@@ -12,10 +12,10 @@
 
         dontUnpack = true;
 
-        helm_ver = "3.9.0";
+        helm_ver = "3.10.2";
         helm_bin = fetchurl {
           url = "https://get.helm.sh/helm-v${helm_ver}-linux-amd64.tar.gz";
-          sha256 = "sha256-S0FkpPc0W2A2QQY5KsafS49XCM3yBRhbp2y4IN/Ufm0=";
+          sha256 = "sha256-n6hZBlzE1lAaTvxoZgipQNXoTxSR2CxglEG7/UXXDI8=";
           executable = true;
         };
 
@@ -47,31 +47,31 @@
           executable = true;
         };
 
-        kustomize_ver = "4.5.5";
+        kustomize_ver = "4.5.7";
         kustomize_bin = fetchurl {
           url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${kustomize_ver}/kustomize_v${kustomize_ver}_linux_amd64.tar.gz";
-          sha256 = "sha256-Rp+vQ995hIFU6iAMz3URvoc1VOVjdNnWg0abF0Ha7uU=";
+          sha256 = "sha256-xUbHANHqz/ZjIbfUIppSwvV7yY/1NnD0rNlrXYI98EE=";
           executable = true;
         };
 
-        packer_ver = "1.8.1";
+        packer_ver = "1.8.4";
         packer_bin = fetchurl {
           url = "https://releases.hashicorp.com/packer/${packer_ver}/packer_${packer_ver}_linux_amd64.zip";
-          sha256 = "sha256-BXSykaSQlvN1vUnYVmO6wpvDl1otBZyZq10F+GXfdh4=";
+          sha256 = "sha256-sCcnVF99dujzUKXkI/4JAnjlJ6tjcue/DlEVISuU0q8=";
           executable = true;
         };
 
-        terraform_ver = "1.2.1";
+        terraform_ver = "1.3.3";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-GAQw7cj84rq4FymMDB3GyKkOAH6ZspiAhEtczSY5vOc=";
+          sha256 = "sha256-7MKhaBvwasBFwirUm7qoZ2qNe2yFFNrPhAcQ7iy/ldc=";
           executable = true;
         };
 
-        terragrunt_ver = "0.37.1";
+        terragrunt_ver = "0.39.2";
         terragrunt_bin = fetchurl {
           url = "https://github.com/gruntwork-io/terragrunt/releases/download/v${terragrunt_ver}/terragrunt_linux_amd64";
-          sha256 = "sha256-7+FQ1gkYDJHmuITXwqBzXPHuT4b/leuAYhRjQuUprPI=";
+          sha256 = "sha256-Jp4P/Tc8RM7AZ0f6fWYENtxz6ufpMlV4NvcHwSghg9E=";
           executable = true;
         };
 
