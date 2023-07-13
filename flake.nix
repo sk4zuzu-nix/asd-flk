@@ -54,24 +54,24 @@
           executable = true;
         };
 
-        packer_ver = "1.8.4";
+        packer_ver = "1.9.1";
         packer_bin = fetchurl {
           url = "https://releases.hashicorp.com/packer/${packer_ver}/packer_${packer_ver}_linux_amd64.zip";
-          sha256 = "sha256-sCcnVF99dujzUKXkI/4JAnjlJ6tjcue/DlEVISuU0q8=";
+          sha256 = "sha256-IOOOkb/PCpiJQOfIHJHnNzSeJJ5prXwhjLT7+VK1QWc=";
           executable = true;
         };
 
-        terraform_ver = "1.3.5";
+        terraform_ver = "1.5.3";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-IviTjUkLtfDJyBiIB0pdH17ucJfuiYtRmzcKobSrlZg=";
+          sha256 = "sha256-R2nWSyWBKC4LnQ8nevCP/q3Zw/5hKGhAc9ets9ch6Gs=";
           executable = true;
         };
 
-        terragrunt_ver = "0.40.2";
+        terragrunt_ver = "0.48.1";
         terragrunt_bin = fetchurl {
           url = "https://github.com/gruntwork-io/terragrunt/releases/download/v${terragrunt_ver}/terragrunt_linux_amd64";
-          sha256 = "sha256-bwFmjXltP4xqwIfeKaOFA5+iQPvFnl4CLvZs/zAmPe8=";
+          sha256 = "sha256-iXiDJchJ233o+mPaByiW/9WHevwOmbtBgLBkM/smrL8=";
           executable = true;
         };
 
