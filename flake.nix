@@ -1,7 +1,7 @@
 {
   description = "The 'asd' flake";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/e44462d6021bfe23dfb24b775cc7c390844f773d;
+  inputs.nixpkgs.url = github:NixOS/nixpkgs/e92039b55bcd58469325ded85d4f58dd5a4eaf58;
 
   outputs = { self, nixpkgs }: {
     defaultPackage.x86_64-linux =
@@ -54,24 +54,24 @@
           executable = true;
         };
 
-        packer_ver = "1.10.0";
+        packer_ver = "1.10.2";
         packer_bin = fetchurl {
           url = "https://releases.hashicorp.com/packer/${packer_ver}/packer_${packer_ver}_linux_amd64.zip";
-          sha256 = "sha256-5N1ETEpU6mORgFhQY0hyuDF1SvefciAfnKootYKd6R8=";
+          sha256 = "sha256-gV84cyLHBfOFEJp7x+lvEoMHYAkHkGGHMCuDZtbYnls=";
           executable = true;
         };
 
-        terraform_ver = "1.6.5";
+        terraform_ver = "1.7.5";
         terraform_bin = fetchurl {
           url = "https://releases.hashicorp.com/terraform/${terraform_ver}/terraform_${terraform_ver}_linux_amd64.zip";
-          sha256 = "sha256-8o02UAn2h4HVpBxzPUg5aePx61r6Gk08l9ukpj3Ge0Y=";
+          sha256 = "sha256-ydAQH0MZOlDJKbXk8YcV/QlsVZ3k8bwHxXbH+moBWCc=";
           executable = true;
         };
 
-        terragrunt_ver = "0.53.8";
+        terragrunt_ver = "0.55.21";
         terragrunt_bin = fetchurl {
           url = "https://github.com/gruntwork-io/terragrunt/releases/download/v${terragrunt_ver}/terragrunt_linux_amd64";
-          sha256 = "sha256-5chw6qx+Y1/AcWTIAehVqrGbO+xnYai4Qp/1fLSOGfc=";
+          sha256 = "sha256-Yb6KIjXWHE8tMrA4UzaW26t6a/BdiMnG7p58mrqP86Q=";
           executable = true;
         };
 
