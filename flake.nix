@@ -103,6 +103,13 @@
           executable = true;
         };
 
+        tfplugindocs_ver = "0.19.4";
+        tfplugindocs_bin = fetchurl {
+          url = "https://github.com/hashicorp/terraform-plugin-docs/releases/download/v${tfplugindocs_ver}/tfplugindocs_${tfplugindocs_ver}_linux_amd64.zip";
+          sha256 = "sha256-pmebXUwT7nzuZzEzo/kiTpULsHL7iuKVtkLOhXzcG00=";
+          executable = true;
+        };
+
         tilt_ver = "0.33.20";
         tilt_bin = fetchurl {
           url = "https://github.com/tilt-dev/tilt/releases/download/v${tilt_ver}/tilt.${tilt_ver}.linux-alpine.x86_64.tar.gz";
@@ -141,10 +148,11 @@
 
           unzip -p $packer_bin packer > $out/packer && chmod +x $out/packer
 
-          unzip -p $terraform_bin terraform > $out/terraform-bin && chmod +x $out/terraform-bin
-          ln -s $out/terraform-bin $out/terraform
+          unzip -p $terraform_bin terraform > $out/terraform && chmod +x $out/terraform
 
           install -m+x $terragrunt_bin $out/terragrunt
+
+          unzip -p $tfplugindocs_bin tfplugindocs > $out/tfplugindocs && chmod +x $out/tfplugindocs
 
           tar xf $tilt_bin -C $out/ tilt && chmod +x $out/tilt
         '';
