@@ -12,10 +12,10 @@
 
         dontUnpack = true;
 
-        clusterctl_ver = "1.8.3";
+        clusterctl_ver = "1.9.5";
         clusterctl_bin = fetchurl {
           url = "https://github.com/kubernetes-sigs/cluster-api/releases/download/v${clusterctl_ver}/clusterctl-linux-amd64";
-          sha256 = "sha256-iYAfeQT7upAbftx5WTK0CnWsp+8l2JEbESJMlme5bx0=";
+          sha256 = "sha256-i4grOze5xEw0Uwxx5oCRrro4HeEBUcrpVzsATYi/It4=";
           executable = true;
         };
 
@@ -26,10 +26,17 @@
           executable = true;
         };
 
-        helm_ver = "3.16.1";
+        flux_ver = "2.5.1";
+        flux_bin = fetchurl {
+          url = "https://github.com/fluxcd/flux2/releases/download/v${flux_ver}/flux_${flux_ver}_linux_amd64.tar.gz";
+          sha256 = "sha256-nDoB9nmH+bOQiMSIDMKy5mUx0a1J2GwaiLKjDP5ip5U=";
+          executable = true;
+        };
+
+        helm_ver = "3.17.1";
         helm_bin = fetchurl {
           url = "https://get.helm.sh/helm-v${helm_ver}-linux-amd64.tar.gz";
-          sha256 = "sha256-iqZRJsgeCGsCsRQQBsijGM3uxS3wgWkxO8x/M/KLNvc=";
+          sha256 = "sha256-nyGgXtFfkkq2nQKv0jPHhjXq4bLMBYWz2d2kzrkhKwQ=";
           executable = true;
         };
 
@@ -129,6 +136,8 @@
           install -m+x $clusterctl_bin $out/clusterctl
 
           tar xf $ctlptl_bin -C $out/ ctlptl && chmod +x $out/ctlptl
+
+          tar xf $flux_bin -C $out/ flux && chmod +x $out/flux
 
           tar xf $helm_bin --strip-components=1 -C $out/ linux-amd64/helm && chmod +x $out/helm
 
